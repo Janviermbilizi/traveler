@@ -1,6 +1,6 @@
 body {
   height: 100vh;
-  background-image: url(/assets/images/globe.jpg);
+  background-image: url(./globe.jpg);
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
