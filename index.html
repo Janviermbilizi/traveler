@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <title>Traveler</title>
+  <!--Compiled and minified jquery-->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+
+<body>
+  <!--html codes should start here!-->
+  <div class="container">
+    <br />
+    <!-- City Search Input -->
+
+    <div class="headerBlock">
+      <h3>TRAVELER</h3>
+      <div class="row">
+        <form>
+          <div class="search-wrapper">
+            <div class="input-field col s8">
+              <input type="search" id="search-input" placeholder="Put your next destination city name.." />
+            </div>
+            <div class="input-field col s3">
+              <button class="btn waves-effect waves-light" type="submit" id="search">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+
+
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <!-- Checklist field -->
+      <div class="col s7 orange lighten-2">
+        <div class="todos input-field card-panel color">
+          <form id="todoform" method="POST">
+            <label for="todo-text"> Your Checklist :</label>
+            <input class="inputField" type="text" placeholder="Needs to be done before you take a trip.."
+              name="todo-text" id="todo-text" />
+          </form>
+          <div class="divBox" id="todo-list"></div>
+        </div>
+      </div>
+      <!-- weather html parts -->
+      <div class="col s4 cardColor move  ">
+        <div class="row">
+          <div id="todayWeather" class="card-panel teal darken-4 ">
+            <span id="icon"></span>
+            <h5 class="current-city">City: </h5>
+            <h5 id="date"></h5>
+            <p id="temp">Tempeture:</p>
+            <p id="hum">Humidity:</p>
+            <p id="windy">Windy speed:</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row teal darken-4">
+      <div class="row ">
+        <div class="card-panel teal darken-4 ">
+          <div class="search-wrapper">
+            <div>
+              <h5>Nearest Airport: </h5>
+            </div>
+          </div>
+
+          <div id="airoprt"></div>
+        </div>
+      </div>
+    </div>
+    <!-- google places attraction cards -->
+    <div class="row">
+      <div class="col s12 color column">
+        <h3 class="color">Attractions</h3>
+
+      </div>
+      <div class="col s4 color column">
+        <div class="card hoverable">
+          <div id="card-image1" class="imageResolved">
+          </div>
+          <div id="card-content1" class="cardContent">
+          </div>
+          <div id="card-URL1">
+          </div>
+        </div>
+      </div>
+      <div class="col s4 color column">
+        <div class="card hoverable">
+          <div id="card-image2" class="imageResolved">
+          </div>
+          <div id="card-content2" class="cardContent">
+          </div>
+          <div id="card-URL2">
+          </div>
+        </div>
+      </div>
+      <div class="col s4 color column">
+        <div class="card hoverable">
+          <div id="card-image3" class="imageResolved">
+          </div>
+          <div id="card-content3" class="cardContent">
+          </div>
+          <div id="card-URL3">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script type='text/javascript' src="./assets/js/config.js"></script>
+  <script type='text/javascript' src="./assets/js/script.js"></script>
+</body>
+
+</html>
