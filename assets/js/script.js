@@ -53,4 +53,38 @@ $(document).ready(function () {
   $("body").on("click", ".delete", function () {
     $(this).parent().hide("slow");
   });
+
+  // WEATHER CONTENT
+  $("#search").on("click", function (event) {
+    event.preventDefault();
+    var cityInput = $("#search-input").val();
+    var currentDate = moment().format("LL");
+    var apiKey = "af82d5a25061873accbbaaf6cb52f8c5";
+    var queryURL =
+      "https://api.openweathermap.org/data/2.5/weather?q=" +
+      cityInput +
+      "&units=imperial&appid=" +
+      apiKey;
+    //get API data
+    $.ajax({ url: queryURL, type: "GET" }).then(function (response) {
+      var icon = $("<img>");
+      var iconImg = response.weather[0].icon;
+      icon.attr(
+        "src",
+        "https://openweathermap.org/img/wn/" + iconImg + "@2x.png"
+      );
+      icon.attr("width", 100);
+      $("#icon").html(icon);
+      $(".current-city").html(response.name);
+
+      $("#date").text(currentDate);
+      $("#temp").text("Tempeture : " + response.main.temp + " °F");
+      $("#hum").text("Humidity: " + response.main.humidity + " %");
+      $("#windy").text("Wind Speed: " + response.wind.speed + " MPH");
+      // Converts the temp to Kelvin with the below formula
+      var tempF = (response.main.temp - 273.15) * 1.8 + 32;
+      $(".tempF").text("Temperature (Kelvin) " + tempF);
+      $("#search-input").val("");
+    });
+  });
 });
