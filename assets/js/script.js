@@ -59,12 +59,12 @@ $(document).ready(function () {
   function getWeatherInfo() {
     var cityInput = $("#search-input").val();
     var currentDate = moment().format("LL");
-    var apiKey = "af82d5a25061873accbbaaf6cb52f8c5";
+    var WEATHER_API_KEY = config.WEATHER_API_KEY;
     var queryURL =
       "https://api.openweathermap.org/data/2.5/weather?q=" +
       cityInput +
       "&units=imperial&appid=" +
-      apiKey;
+      WEATHER_API_KEY;
     //get API data
     $.ajax({ url: queryURL, type: "GET" }).then(function (response) {
       var icon = $("<img>");
