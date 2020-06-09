@@ -5,8 +5,9 @@ $(document).ready(function () {
     event.preventDefault();
     console.log("button was clicked");
     var cityInput = $("#search-input").val();
-
     console.log(cityInput);
+    getWeatherInfo();
+    getCityAttractionsPlaces();
   });
 
   // TO-DO LIST
@@ -55,8 +56,7 @@ $(document).ready(function () {
   });
 
   // WEATHER CONTENT
-  $("#search").on("click", function (event) {
-    event.preventDefault();
+  function getWeatherInfo() {
     var cityInput = $("#search-input").val();
     var currentDate = moment().format("LL");
     var apiKey = "af82d5a25061873accbbaaf6cb52f8c5";
@@ -86,5 +86,77 @@ $(document).ready(function () {
       $(".tempF").text("Temperature (Kelvin) " + tempF);
       $("#search-input").val("");
     });
-  });
+  }
+
+  // ATTRACTIONS
+  function getCityAttractionsPlaces() {
+    event.preventDefault();
+
+    let cityInput = $("#search-input").val();
+
+    let corsURL = "https://cors-anywhere.herokuapp.com/";
+
+    let GOOGLE_PLACE_API_KEY = config.GOOGLE_PLACE_API_KEY;
+
+    let queryURL =
+      corsURL +
+      "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" +
+      cityInput +
+      "+attraction&key=" +
+      GOOGLE_PLACE_API_KEY;
+
+    $.ajax({
+      url: queryURL,
+      method: "GET",
+    }).then(function (response) {
+      console.log(response);
+
+      localStorage.setItem("city search", cityInput);
+      var citySearchStore = localStorage.getItem("city search");
+
+      //making the photo reference URL
+      let photoRef = response.results[0].photos[0].photo_reference;
+      let photoRef1 = response.results[1].photos[0].photo_reference;
+      let photoRef2 = response.results[2].photos[0].photo_reference;
+
+      let photoURL =
+        "https://maps.googleapis.com/maps/api/place/photo?maxwidth=310&photoreference=" +
+        photoRef +
+        "&key=" +
+        GOOGLE_PLACE_API_KEY;
+      let photoURL2 =
+        "https://maps.googleapis.com/maps/api/place/photo?maxwidth=310&photoreference=" +
+        photoRef1 +
+        "&key=" +
+        GOOGLE_PLACE_API_KEY;
+      let photoURL3 =
+        "https://maps.googleapis.com/maps/api/place/photo?maxwidth=310&photoreference=" +
+        photoRef2 +
+        "&key=" +
+        GOOGLE_PLACE_API_KEY;
+
+      //posting the images from the photo reference url to the Div's
+      let cardImg1 = $("<img>");
+      cardImg1.attr("src", photoURL);
+      let cardImg2 = $("<img>");
+      cardImg2.attr("src", photoURL2);
+      let cardImg3 = $("<img>");
+      cardImg3.attr("src", photoURL3);
+      $("#card-image1").empty().append(cardImg1);
+      $("#card-image2").empty().append(cardImg2);
+      $("#card-image3").empty().append(cardImg3);
+
+      //making the name reference URL
+      let nameRef = response.results[0].name;
+      let nameRef1 = response.results[1].name;
+      let nameRef2 = response.results[2].name;
+      console.log(nameRef);
+      //posting the names to the card content
+      $("#card-content1").text(nameRef);
+      $("#card-content2").text(nameRef1);
+      $("#card-content3").text(nameRef2);
+
+      airoportSearch(cityInput);
+    });
+  }
 });
