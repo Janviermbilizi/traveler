@@ -14,7 +14,7 @@ We used HTML, CSS, Javascript, jquery and materialize library. We also used Git/
 
 <strong>Installation</strong>
 
-This is only a website and does not need installation. it is currently hosted in github and you can access it at https://to be added/
+This is only a website and does not need installation. it is currently hosted on github and you can access it at https://github.com/Janviermbilizi/traveler
 
 <strong>Usage</strong>
 
@@ -23,7 +23,7 @@ The page is simple, clean, easy to use and undertand. It is like a digital agend
 <img src="./assets/images/01-02-2020 13-46-02.jpg" width = 600px><br>
 <strong>Support and Contribution</strong>
 
-If you have any question or want to see our Repo, please email us at any of the following emails;janviermbilizi@gmail.com, vhelen0404@gmail.com, cwright489@gmail.com.
+If you have any question or want to see our Repo, please email us at any of the following emails; janviermbilizi@gmail.com
 
 <strong>Authors and acknowledgement</strong>
 
