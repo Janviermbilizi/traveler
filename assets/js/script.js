@@ -159,4 +159,37 @@ $(document).ready(function () {
       airoportSearch(cityInput);
     });
   }
+
+  //Define airportsearch function that basically fund the nearest airport to the place the user is visiting and dispaly it
+  function airoportSearch(cityInput) {
+    var settings = {
+      async: true,
+      crossDomain: true,
+      url:
+        "https://cometari-airportsfinder-v1.p.rapidapi.com/api/airports/by-text?text=" +
+        cityInput,
+      method: "GET",
+      headers: {
+        "x-rapidapi-host": "cometari-airportsfinder-v1.p.rapidapi.com",
+        "x-rapidapi-key": "6d5cf5c180mshb8b063a3d796c01p16a795jsnc128322bf4f8",
+      },
+    };
+
+    $.ajax(settings)
+      .done(function (response) {
+        $("#airoprt").empty();
+        var i = 0;
+        var airoportCode = response[i].code;
+        if (!airoportCode) alert("could not load the airport info");
+        var air = airoportURL(airoportCode);
+      })
+      .fail(function (e) {
+        console.log("Error loading airpott info");
+        MaxError++;
+        $("#airoprt").html("<h6>Loading...</h6>");
+        setTimeout(() => {
+          if (MaxError < 4) airoportSearch(cityInput);
+        }, 5000);
+      });
+  }
 });
