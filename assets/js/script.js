@@ -192,4 +192,32 @@ $(document).ready(function () {
         }, 5000);
       });
   }
+
+  //Define airportURL function that basically takes the nearest airport found and display the link to it website
+  function airoportURL(airoportCode) {
+    var settings = {
+      async: true,
+      crossDomain: true,
+      url: "https://airport-info.p.rapidapi.com/airport?iata=" + airoportCode,
+      method: "GET",
+      headers: {
+        "x-rapidapi-host": "airport-info.p.rapidapi.com",
+        "x-rapidapi-key": "6d5cf5c180mshb8b063a3d796c01p16a795jsnc128322bf4f8",
+      },
+    };
+
+    $.ajax(settings).done(function (response) {
+      var airportNewName = response.name;
+      var airoprtWebsite = response.website;
+
+      var airportList = $("<li>").text(airportNewName);
+      var airoprtUrlSpot = $("<a>").addClass("btn");
+
+      airoprtUrlSpot.text("Visit Airport site");
+      airoprtUrlSpot.attr("href", airoprtWebsite).attr("target", "_blank");
+
+      airportList.append(airoprtUrlSpot);
+      $("#airoprt").append(airportList);
+    });
+  }
 });
